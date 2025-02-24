@@ -3,14 +3,18 @@ import bs_logo from "../assets/bizzSel.png"
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
 
-function HomePage({storeNumber, storeChange})
+function HomePage({store, changeStore})
 {
     const navigate = useNavigate();
+    const cookieExpiration = 86400;       // One day
     
     function handleClick(e)
     {
         e.preventDefault();
-        navigate("/Queue/" + storeNumber);
+        console.log(store)
+        
+        document.cookie = `store=${store}; Max-Age=${cookieExpiration}; path=/`;
+        navigate("/Queue/" + store);
     }
 
     return(
@@ -22,7 +26,7 @@ function HomePage({storeNumber, storeChange})
                 <hr />
                 <Form>
                     <Form.Group className="" controlId="storeNumber">
-                        <Form.Control value={storeNumber} required onChange={(e) => storeChange(e.target.value)} className="my-2" type="text" placeholder="Enter Store Number" />
+                        <Form.Control value={store} required onChange={(e) => changeStore(e.target.value)} className="my-2" type="text" placeholder="Enter Store Number" />
                         <Button className="btn btn-primary" onClick={(e) => handleClick(e)}>Submit</Button>
                     </Form.Group>
                 </Form>
