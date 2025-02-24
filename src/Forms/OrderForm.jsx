@@ -4,7 +4,7 @@ import { Button, Form, Row, Col } from "react-bootstrap";
 import FileDisplay from "../Components/FileDisplay";
 import { useParams } from "react-router-dom";
 
-function OrderForm()
+function OrderForm({closeModal, refreshAction})
 {
     const today = new Date();
     const todaysDate = new Date().toLocaleDateString();
@@ -65,7 +65,11 @@ function OrderForm()
                 'Content-Type': 'multipart/form-data'
             }})
             .then((res) => console.log(res))
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err))
+            .finally(() => {
+                closeModal();
+                refreshAction();
+            });
     }
 
     function removeFile(e, name)

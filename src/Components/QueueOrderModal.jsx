@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Modal, Button, Form, Row, Col } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import OrderForm from "../Forms/OrderForm";
 
 function QueueOrderModal(props)
@@ -28,7 +28,7 @@ function QueueOrderModal(props)
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <OrderForm />
+                    <OrderForm closeModal={closeModal} refreshAction={props.refreshAction}/>
                 </Modal.Body>
             </Modal>
         </div>

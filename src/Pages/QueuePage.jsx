@@ -7,22 +7,26 @@ import { Link, useParams } from 'react-router-dom';
 function QueuePage()
 {
     const [orders, setOrders] = useState([]);
+    const [isUpdated, setIsUpdated] = useState(false);
     const {id} = useParams();
 
     useEffect(() => {
-        axios.get(import.meta.env.VITE_SERVER_API + "/queue/GetStoreOrders/" + id)
-            .then((res) => {
-                setOrders(res.data.filter(o => !o.isComplete))
-            })
-
-            .catch((err) => console.log(err));
-    },[])
+        if(!isUpdated)
+        {
+            axios.get(import.meta.env.VITE_SERVER_API + "/queue/GetStoreOrders/" + id)
+                .then((res) => {
+                    setOrders(res.data.filter(o => !o.isComplete))
+                })
+                .catch((err) => console.log(err))
+                .finally((setIsUpdated(true)));
+        }
+    },[isUpdated])
 
     return(
         <div>
             <h1 className="display-1 my-4"><strong>Business Select CPD Orders</strong></h1>
             <hr />
-            <QueueOrderModal />
+            <QueueOrderModal refreshAction={() => setIsUpdated(false)} />
             <div>
                 {
                     orders.length < 1
