@@ -1,0 +1,32 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.undeline-on-hover{
+  border-bottom-width: 0;
+  background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
+  background-size: 0 3px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size .24s ease-in-out;
+}
+
+.undeline-on-hover:hover{
+  background-size: 100% 3px;
+  background-position: 0 100%
+}
+
+.work-area-base{
+  height: 100vh;  
+  overflow: hidden;
+  overflow-y: scroll;
+  flex-wrap: wrap;
+}
+
+.def-bg{
+  background-image: url("/src/assets/bizzqueuebg.svg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
