@@ -83,7 +83,7 @@ function OrderPage()
         <div className="p-4 min-vh-100 justify-content-center" style={{"backgroundColor": "rgba(255,255,255,.24)"}}>
             <h1 className="display-1"><strong>Order</strong></h1>
             <hr />
-            <Form className="d-flex col flex-wrap" onSubmit={(e) => handleSubmission(e)} encType="multipart/form-data">
+            <Form className="d-flex col flex-wrap justify-content-center" onSubmit={(e) => handleSubmission(e)} encType="multipart/form-data">
                 <div className="col-12 col-md-5">
                     <h4>Client Info:</h4>
                     <Row className="mb-3">
@@ -111,7 +111,7 @@ function OrderPage()
 
                 </div>
 
-                <div className="col-0 col-md-2"></div>
+                <div className="col-0 col-md-1"></div>
 
                 <div className="col-12 col-md-5">
 
