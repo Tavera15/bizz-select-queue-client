@@ -10,7 +10,7 @@ function QueueOrderModal(props)
     const closeModal = () => setModalShow(false);
 
     return(
-        <div>
+        <>
             <Button onClick={openModal} className="mb-2">Create Order</Button>  
             <Modal
                 {...props}
@@ -31,7 +31,7 @@ function QueueOrderModal(props)
                     <OrderForm closeModal={closeModal} refreshAction={props.refreshAction}/>
                 </Modal.Body>
             </Modal>
-        </div>
+        </>
     )
 }
 

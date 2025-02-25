@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import bs_logo from "../assets/bizzSel.png"
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
@@ -11,8 +11,11 @@ function HomePage({store, changeStore})
     function handleClick(e)
     {
         e.preventDefault();
-        console.log(store)
-        
+        submitForm()
+    }
+
+    function submitForm()
+    {
         document.cookie = `store=${store}; Max-Age=${cookieExpiration}; path=/`;
         navigate("/Queue/" + store);
     }
@@ -24,10 +27,10 @@ function HomePage({store, changeStore})
                 <h1 className="display-2"><strong>CPD Queue</strong></h1>
                 <h2>Keep Track of your CPD Business Select Orders not on the OPC Queue</h2>
                 <hr />
-                <Form>
+                <Form onSubmit={(e) => handleClick(e)}>
                     <Form.Group className="" controlId="storeNumber">
                         <Form.Control value={store} required onChange={(e) => changeStore(e.target.value)} className="my-2" type="text" placeholder="Enter Store Number" />
-                        <Button className="btn btn-primary" onClick={(e) => handleClick(e)}>Submit</Button>
+                        <Button type="submit" className="btn btn-primary">Submit</Button>
                     </Form.Group>
                 </Form>
             </div>

@@ -128,7 +128,7 @@ function OrderForm({closeModal, refreshAction})
                     </Form.Group>
                     <Form.Group className="mb-3" as={Col} controlId="formOrderNumber">
                         <Form.Label>Employee Name</Form.Label>
-                        <Form.Control value={employee} onChange={(e) => setEmployee(e.target.value)} type="text" placeholder="" />
+                        <Form.Control value={employee} onChange={(e) => setEmployee(e.target.value)} type="text" placeholder="(Ex. Kaylyn, Fatima...)" />
                     </Form.Group>
                 </Row>
                 <Row className="mb-3">

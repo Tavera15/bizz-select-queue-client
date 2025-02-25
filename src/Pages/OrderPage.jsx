@@ -25,12 +25,15 @@ function OrderPage()
     
     
     useEffect(() => {
-        axios.get(import.meta.env.VITE_SERVER_API + `/queue/GetOrder/${id}/${order}`)
-            .then((res) => {
-                setOrder(res.data)
-                setIsLoading(false)
-            });
-    },[])
+        if(isLoading)
+        {
+            axios.get(import.meta.env.VITE_SERVER_API + `/queue/GetOrder/${id}/${order}`)
+                .then((res) => {
+                    setOrder(res.data)
+                    setIsLoading(false)
+                });
+        }
+    },[isLoading])
     
     useEffect(() => {
         if(!orderData || isLoading) {return;}
@@ -60,7 +63,10 @@ function OrderPage()
         }
 
         axios.put(import.meta.env.VITE_SERVER_API + `/queue/UpdateOrder/${id}/${order}`, data)
-            .then((res) => location.reload())
+            .then(() => {
+                setIsLoading(true)
+                alert("Updated Successfully!")
+            })
             .catch((err) => alert("Unable to do function"));
     }
 
@@ -69,7 +75,7 @@ function OrderPage()
         e.preventDefault();
 
         axios.put(import.meta.env.VITE_SERVER_API + `/queue/CompleteOrder/${id}/${order}`)
-            .then((res) => location.reload())
+            .then((res) => setIsLoading(true))
             .catch((err) => alert("Unable to do function"));
     }
 
@@ -117,7 +123,7 @@ function OrderPage()
                         </Form.Group>
                         <Form.Group className="mb-3" as={Col} controlId="formOrderName">
                             <Form.Label>Employee Name</Form.Label>
-                            <Form.Control disabled value={employee} onChange={(e) => setEmployee(e.target.value)} type="text" placeholder="" />
+                            <Form.Control disabled value={employee} onChange={(e) => setEmployee(e.target.value)} type="text" />
                         </Form.Group>
                     </Row>
                     <Row className="mb-3">
